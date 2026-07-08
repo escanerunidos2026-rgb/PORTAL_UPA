@@ -1,0 +1,167 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+    color:#1b1b1b;
+}
+
+header{
+    background:#0B4F3A;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    font-size:42px;
+}
+
+header p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+.bienvenida{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+    text-align:center;
+}
+
+..bienvenida{
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+    line-height: 1.8;   /* separación entre líneas */
+}
+
+.bienvenida h2{
+    margin-bottom: 25px;
+}
+
+.bienvenida h3{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.bienvenida p{
+    margin-bottom: 15px;
+}
+
+.bienvenida ul,
+.bienvenida ol{
+    margin-bottom: 20px;
+    padding-left: 30px;
+}
+
+.bienvenida li{
+    margin-bottom: 10px;
+}
+}
+
+.bienvenida p{
+    font-size:20px;
+}
+
+.menu{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    padding-bottom:50px;
+}
+
+.menu button{
+    background:white;
+    border:none;
+    padding:25px;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.menu button:hover{
+    background:#D4AF37;
+    color:white;
+    transform:translateY(-5px);
+}.tarjeta{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    transition:.4s;
+
+    text-align:center;
+
+}
+
+.tarjeta:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.icono{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+.tarjeta h3{
+
+    color:#0B4F3A;
+
+    margin-bottom:15px;
+
+}
+
+.tarjeta p{
+
+    color:#555;
+
+    margin-bottom:20px;
+
+    line-height:25px;
+
+}
+
+.tarjeta button{
+
+    background:#D4AF37;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.tarjeta button:hover{
+
+    background:#0B4F3A;
+
+}
