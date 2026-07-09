@@ -33,35 +33,10 @@ header p{
     text-align:center;
 }
 
-..bienvenida{
-    max-width: 900px;
-    margin: auto;
-    padding: 30px;
-    line-height: 1.8;   /* separación entre líneas */
-}
-
 .bienvenida h2{
-    margin-bottom: 25px;
-}
-
-.bienvenida h3{
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-.bienvenida p{
-    margin-bottom: 15px;
-}
-
-.bienvenida ul,
-.bienvenida ol{
-    margin-bottom: 20px;
-    padding-left: 30px;
-}
-
-.bienvenida li{
-    margin-bottom: 10px;
-}
+    font-size:35px;
+    color:#0B4F3A;
+    margin-bottom:15px;
 }
 
 .bienvenida p{
