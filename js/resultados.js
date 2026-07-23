@@ -1,15 +1,19 @@
-let estudiantes = [];
+//==========================================
+// PORTAL UPA - BUSCADOR DE RESULTADOS v2.0
+//==========================================
 
-//==============================
+let estudiantes = [];
+let indiceEstudiantes = {};
+
+//==========================================
 // CARGAR CSV
-//==============================
+//==========================================
 
 async function cargarDatos() {
 
     if (estudiantes.length > 0) return;
 
     const respuesta = await fetch("data/resultados.csv");
-
     const texto = await respuesta.text();
 
     const filas = texto.split("\n");
@@ -20,39 +24,47 @@ async function cargarDatos() {
 
         if (columnas.length < 2) continue;
 
-        estudiantes.push({
+        let nombre = columnas[0].trim();
+        let nota = parseFloat(columnas[1]);
 
-            nombre: columnas[0].trim(),
+        let estudiante = {
+            nombre: nombre,
+            nota: nota
+        };
 
-            nota: parseFloat(columnas[1])
+        estudiantes.push(estudiante);
 
-        });
+        let llave = normalizar(nombre);
+
+        if (!indiceEstudiantes[llave]) {
+
+            indiceEstudiantes[llave] = [];
+
+        }
+
+        indiceEstudiantes[llave].push(estudiante);
 
     }
 
 }
 
-//==============================
+//==========================================
 // NORMALIZAR TEXTO
-//==============================
+//==========================================
 
 function normalizar(texto) {
 
     return texto
-
         .normalize("NFD")
-
         .replace(/[\u0300-\u036f]/g, "")
-
         .toUpperCase()
-
         .trim();
 
 }
 
-//==============================
-// BUSCAR COINCIDENCIA
-//==============================
+//==========================================
+// COMPARAR NOMBRES
+//==========================================
 
 function coincide(busqueda, nombre) {
 
@@ -68,30 +80,15 @@ function coincide(busqueda, nombre) {
 
 }
 
-//==============================
-// MOSTRAR RESULTADO
-//==============================
+//==========================================
+// MOSTRAR HISTORIAL
+//==========================================
 
-function mostrarResultado(estudiante) {
+function mostrarResultados(listaResultados){
 
-    let estado = "";
-    let clase = "";
+    let html = `
 
-    if (estudiante.nota >= 3.5) {
-
-        estado = "✅ APROBADO";
-        clase = "aprobado";
-
-    } else {
-
-        estado = "❌ NO APROBADO";
-        clase = "no-aprobado";
-
-    }
-
-    document.getElementById("resultado").innerHTML = `
-
-<div class="tarjeta-resultado ${clase}">
+<div class="tarjeta-resultado">
 
 <div class="encabezado-tarjeta">
 
@@ -107,23 +104,60 @@ function mostrarResultado(estudiante) {
 
 <span>👤 Estudiante</span>
 
-<h3>${estudiante.nombre}</h3>
+<h3>${listaResultados[0].nombre}</h3>
 
 </div>
 
-<div class="campo">
+<hr style="margin:25px 0;">
 
-<span>📊 Calificación Final</span>
+<h3 style="margin-bottom:25px;">Historial de Resultados</h3>
 
-<h1>${estudiante.nota}</h1>
+`;
 
-</div>
+    listaResultados.forEach((estudiante,index)=>{
 
-<div class="estado">
+        let estado="";
+        let color="";
+
+        if(estudiante.nota>=3.5){
+
+            estado="✅ APROBADO";
+            color="#198754";
+
+        }else{
+
+            estado="❌ NO APROBADO";
+            color="#dc3545";
+
+        }
+
+        html+=`
+
+<div style="margin-bottom:25px;padding:18px;border:1px solid #e5e5e5;border-radius:12px;">
+
+<h4 style="margin-bottom:12px;color:#0B4F3A;">
+
+Resultado ${index+1}
+
+</h4>
+
+<p style="font-size:20px;">
+
+📊 <strong>Calificación:</strong> ${estudiante.nota}
+
+</p>
+
+<p style="font-size:22px;font-weight:bold;color:${color};">
 
 ${estado}
 
+</p>
+
 </div>
+
+`;
+
+    });    html += `
 
 </div>
 
@@ -131,27 +165,52 @@ ${estado}
 
 `;
 
+    document.getElementById("resultado").innerHTML = html;
+
 }
 
-//==============================
+//==========================================
 // CONSULTAR
-//==============================
+//==========================================
 
-async function consultar() {
+async function consultar(){
 
     await cargarDatos();
 
-    let texto = document.getElementById("nombre").value;
+    const texto = document.getElementById("nombre").value.trim();
 
-    let estudiante = estudiantes.find(e => coincide(texto, e.nombre));
+    if(texto===""){
 
-    if (estudiante) {
+        document.getElementById("resultado").innerHTML="";
 
-        mostrarResultado(estudiante);
+        return;
 
-    } else {
+    }
 
-        document.getElementById("resultado").innerHTML = `
+    let llaveSeleccionada=null;
+
+    // Buscar el nombre que coincide
+    for(let llave in indiceEstudiantes){
+
+        let nombreOriginal=indiceEstudiantes[llave][0].nombre;
+
+        if(coincide(texto,nombreOriginal)){
+
+            llaveSeleccionada=llave;
+
+            break;
+
+        }
+
+    }
+
+    if(llaveSeleccionada){
+
+        mostrarResultados(indiceEstudiantes[llaveSeleccionada]);
+
+    }else{
+
+        document.getElementById("resultado").innerHTML=`
 
 <div class="tarjeta-resultado no-aprobado">
 
@@ -175,57 +234,62 @@ async function consultar() {
 
 }
 
-//==============================
+//==========================================
 // SUGERENCIAS
-//==============================
+//==========================================
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded",async()=>{
 
     await cargarDatos();
 
-    const input = document.getElementById("nombre");
+    const input=document.getElementById("nombre");
 
-    const lista = document.getElementById("sugerencias");
+    const lista=document.getElementById("sugerencias");
 
-    input.addEventListener("input", function () {
+    input.addEventListener("input",function(){
 
-        let texto = input.value;
+        const texto=input.value.trim();
 
-        lista.innerHTML = "";
+        lista.innerHTML="";
 
-        if (texto.length == 0) return;
+        if(texto==="") return;
 
-        let encontrados = estudiantes.filter(e => coincide(texto, e.nombre));
+        // Mostrar un solo nombre por estudiante
+        Object.keys(indiceEstudiantes).forEach(llave=>{
 
-        encontrados.slice(0, 8).forEach(estudiante => {
+            let nombre=indiceEstudiantes[llave][0].nombre;
 
-            let item = document.createElement("div");
+            if(coincide(texto,nombre)){
 
-            item.className = "item-sugerencia";
+                const item=document.createElement("div");
 
-            item.textContent = estudiante.nombre;
+                item.className="item-sugerencia";
 
-            item.onclick = function () {
+                item.textContent=nombre;
 
-                input.value = estudiante.nombre;
+                item.onclick=function(){
 
-                lista.innerHTML = "";
+                    input.value=nombre;
 
-                mostrarResultado(estudiante);
+                    lista.innerHTML="";
 
-            };
+                    mostrarResultados(indiceEstudiantes[llave]);
 
-            lista.appendChild(item);
+                };
+
+                lista.appendChild(item);
+
+            }
 
         });
 
     });
 
-    document.addEventListener("click", function (e) {
+    document.addEventListener("click",function(e){
 
-        if (!e.target.closest("#nombre")) {
+        if(!e.target.closest("#nombre") && !e.target.closest("#sugerencias")){
 
-            lista.innerHTML = "";
+            lista.innerHTML="";
 
         }
 
