@@ -139,4 +139,178 @@ header p{
 
     background:#0B4F3A;
 
+}/*=========================================
+    SUGERENCIAS DEL BUSCADOR
+=========================================*/
+
+.lista-sugerencias{
+
+    position:absolute;
+
+    top:100%;
+
+    left:0;
+
+    width:100%;
+
+    background:white;
+
+    border-radius:0 0 10px 10px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+    overflow:hidden;
+
+    z-index:999;
+
+}
+
+.item-sugerencia{
+
+    padding:12px 15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    border-bottom:1px solid #eee;
+
+    background:white;
+
+}
+
+.item-sugerencia:hover{
+
+    background:#0B4F3A;
+
+    color:white;
+
+}
+
+/*=========================================
+    TARJETA RESULTADO
+=========================================*/
+
+.tarjeta-resultado{
+
+    max-width:550px;
+
+    margin:35px auto;
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+    animation:aparecer .35s;
+
+}
+
+.encabezado-tarjeta{
+
+    padding:25px;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.aprobado .encabezado-tarjeta{
+
+    background:#198754;
+
+}
+
+.no-aprobado .encabezado-tarjeta{
+
+    background:#dc3545;
+
+}
+
+.contenido-tarjeta{
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+.campo{
+
+    margin-bottom:25px;
+
+}
+
+.campo span{
+
+    display:block;
+
+    color:#777;
+
+    margin-bottom:10px;
+
+    font-size:17px;
+
+}
+
+.campo h3{
+
+    font-size:30px;
+
+    color:#222;
+
+}
+
+.campo h1{
+
+    font-size:55px;
+
+    color:#0B4F3A;
+
+}
+
+.estado{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    margin-top:25px;
+
+}
+
+.aprobado .estado{
+
+    color:#198754;
+
+}
+
+.no-aprobado .estado{
+
+    color:#dc3545;
+
+}
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
 }
