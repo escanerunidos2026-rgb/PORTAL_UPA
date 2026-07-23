@@ -64,6 +64,17 @@
 
     <div id="resultado"></div>
 
+    <br>
+
+    <!-- BOTÓN PARA DESCARGAR PDF -->
+    <button id="btnPDF"
+            onclick="descargarPDF()"
+            style="display:none; background:#0B4F3A; color:white; border:none; padding:12px 25px; border-radius:10px; cursor:pointer; font-size:16px;">
+
+        📄 Descargar Resultado en PDF
+
+    </button>
+
 </section>
 
 <div style="text-align:center; margin:40px;">
@@ -81,7 +92,7 @@
 </div>
 
 </main>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/resultados.js"></script>
 
 </body>

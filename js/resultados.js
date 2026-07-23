@@ -5,6 +5,7 @@
 let estudiantes = [];
 let indiceEstudiantes = {};
 
+
 //==========================================
 // CARGAR CSV
 //==========================================
@@ -87,7 +88,7 @@ function coincide(busqueda, nombre) {
 function mostrarResultados(listaResultados){
 
     let html = `
-
+  
 <div class="tarjeta-resultado">
 
 <div class="encabezado-tarjeta">
@@ -166,6 +167,7 @@ ${estado}
 `;
 
     document.getElementById("resultado").innerHTML = html;
+document.getElementById("btnPDF").style.display = "inline-block";
 
 }
 
@@ -180,7 +182,7 @@ async function consultar(){
     const texto = document.getElementById("nombre").value.trim();
 
     if(texto===""){
-
+document.getElementById("btnPDF").style.display = "none";
         document.getElementById("resultado").innerHTML="";
 
         return;
@@ -295,4 +297,105 @@ document.addEventListener("DOMContentLoaded",async()=>{
 
     });
 
-});
+});//==========================================
+// DESCARGAR RESULTADO EN PDF
+//==========================================
+
+function descargarPDF() {
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const nombre = document.querySelector(".campo h3")?.textContent || "";
+
+    const logo = new Image();
+
+    // Cambia esta ruta por donde tengas el logo
+    logo.src = "img/logo.png";
+
+    logo.onload = function () {
+
+        // Logo
+        doc.addImage(logo, "PNG", 15, 10, 28, 28);
+
+        // Encabezado
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.text("PORTAL UPA", 105, 20, { align: "center" });
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text("Institución Técnica Unidos por Antioquia", 105, 28, { align: "center" });
+
+        doc.line(15, 42, 195, 42);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("RESULTADO DEL EXAMEN", 105, 55, { align: "center" });
+
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        doc.text("Estudiante:", 20, 70);
+
+        doc.setFont("helvetica", "bold");
+        doc.text(nombre, 50, 70);
+
+        let y = 90;
+
+        const resultados = document.querySelectorAll(".contenido-tarjeta > div[style]");
+
+        resultados.forEach((resultado, index) => {
+
+            const textos = resultado.querySelectorAll("p");
+
+            const nota = textos[0].innerText.replace("📊 ", "");
+            const estado = textos[1].innerText;
+
+            doc.setDrawColor(180);
+            doc.roundedRect(20, y - 8, 170, 30, 3, 3);
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Resultado " + (index + 1), 25, y);
+
+            doc.setFont("helvetica", "normal");
+            doc.text(nota, 25, y + 8);
+
+            if (estado.includes("APROBADO")) {
+                doc.setTextColor(0, 130, 0);
+            } else {
+                doc.setTextColor(200, 0, 0);
+            }
+
+            doc.setFont("helvetica", "bold");
+            doc.text(estado, 25, y + 16);
+
+            doc.setTextColor(0, 0, 0);
+
+            y += 40;
+
+            if (y > 250) {
+                doc.addPage();
+                y = 30;
+            }
+
+        });
+
+        const fecha = new Date();
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+
+        doc.text(
+            "Fecha de consulta: " +
+            fecha.toLocaleDateString() +
+            " " +
+            fecha.toLocaleTimeString(),
+            20,
+            285
+        );
+
+        doc.save("Resultado_" + nombre + ".pdf");
+
+    };
+
+}
