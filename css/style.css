@@ -363,4 +363,34 @@ button{
     margin:35px 0;
     border-radius:15px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
+}/*====================================
+BOTONES PORTAL UPA
+====================================*/
+
+button{
+
+    background: linear-gradient(135deg,#0B7A3B,#0B4F3A);
+    color:white;
+    border:none;
+    border-radius:14px;
+    padding:14px 28px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(11,79,58,.30);
+    transition:.30s;
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(11,79,58,.45);
+    background:linear-gradient(135deg,#0E8D45,#0B5E46);
+
+}
+
+button:active{
+
+    transform:scale(.97);
+
 }
