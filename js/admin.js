@@ -4,6 +4,7 @@ async function cargarEstadisticas() {
     try {
         const respuesta = await fetch(URL_HOJA);
         const datos = await respuesta.json();
+console.log(datos);
 
         document.getElementById("consultas").textContent = datos.consultas;
         document.getElementById("pdf").textContent = datos.pdfs;
