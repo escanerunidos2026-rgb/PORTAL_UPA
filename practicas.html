@@ -72,7 +72,9 @@
 
     <div style="text-align:center; margin:30px;">
 
-        <a href="pdf/documentos_practicas.pdf" download="Documentos_Practicas_UPA.pdf">
+        <a href="pdf/documentos_practicas.pdf"
+   download
+   onclick="registrarDescarga('Documentación de Prácticas')">
 
     <button>📄 Descargar Documento PDF</button>
 
@@ -116,7 +118,14 @@
 </div>
 
 </main>
+<script>
+const URL_ESTADISTICAS = "https://script.google.com/macros/s/AKfycbx_DKK2VWgyDqoN_a50nDU4_8PhWSTI-6A6-yyZ3-DoALTEAXiwli3hKMg-jHaXfzcaAg/exec";
 
+function registrarDescarga(nombre){
+    fetch(URL_ESTADISTICAS + "?accion=" + encodeURIComponent(nombre))
+        .catch(()=>{});
+}
+</script>
 </body>
 
 </html>

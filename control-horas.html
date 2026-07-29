@@ -68,7 +68,9 @@
 
     <div style="text-align:center; margin:30px;">
 
-        <a href="pdf/control_horas.pdf" download>
+        <a href="pdf/control_horas.pdf"
+   download
+   onclick="registrarDescarga('Control de Horas')">
 
     <button>📄 Descargar Formato PDF</button>
 
@@ -109,7 +111,14 @@
 </div>
 
 </main>
+<script>
+const URL_ESTADISTICAS = "https://script.google.com/macros/s/AKfycbx_DKK2VWgyDqoN_a50nDU4_8PhWSTI-6A6-yyZ3-DoALTEAXiwli3hKMg-jHaXfzcaAg/exec";
 
+function registrarDescarga(nombre){
+    fetch(URL_ESTADISTICAS + "?accion=" + encodeURIComponent(nombre))
+        .catch(()=>{});
+}
+</script>
 </body>
 
 </html>

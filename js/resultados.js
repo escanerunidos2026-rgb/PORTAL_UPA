@@ -174,7 +174,7 @@ document.getElementById("btnPDF").style.display = "inline-block";
 //==========================================
 // CONSULTAR
 //==========================================
-
+registrarEstadistica("Consulta de resultado");
 async function consultar(){
 
     await cargarDatos();
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded",async()=>{
 });//==========================================
 // DESCARGAR RESULTADO EN PDF
 //==========================================
-
+registrarEstadistica("Descarga PDF Resultado");
 function descargarPDF() {
 
     const { jsPDF } = window.jspdf;
@@ -398,4 +398,9 @@ function descargarPDF() {
 
     };
 
+}const URL_ESTADISTICAS = "https://script.google.com/macros/s/AKfycbx_DKK2VWgyDqoN_a50nDU4_8PhWSTI-6A6-yyZ3-DoALTEAXiwli3hKMg-jHaXfzcaAg/exec";
+
+function registrarEstadistica(accion) {
+    fetch(URL_ESTADISTICAS + "?accion=" + encodeURIComponent(accion))
+        .catch(() => {});
 }
