@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel Administrativo | Portal UPA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:#f4f6f9;
+
+}
+
+header{
+
+background:#0B4F3A;
+color:white;
+padding:25px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+header h1{
+
+font-size:36px;
+
+}
+
+header p{
+
+margin-top:10px;
+font-size:18px;
+
+}
+
+.contenedor{
+
+width:95%;
+max-width:1400px;
+margin:40px auto;
+
+}
+
+.titulo{
+
+text-align:center;
+margin-bottom:35px;
+
+}
+
+.titulo h2{
+
+color:#0B4F3A;
+font-size:36px;
+
+}
+
+.titulo p{
+
+font-size:18px;
+color:#666;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+
+}
+
+.tarjeta{
+
+background:white;
+border-radius:20px;
+padding:30px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transition:.3s;
+
+}
+
+.tarjeta:hover{
+
+transform:translateY(-8px);
+
+}
+
+.icono{
+
+font-size:55px;
+margin-bottom:15px;
+
+}
+
+.tarjeta h3{
+
+color:#0B4F3A;
+margin-bottom:15px;
+
+}
+
+.numero{
+
+font-size:42px;
+font-weight:bold;
+color:#D4AF37;
+
+}
+
+.estado{
+
+margin-top:50px;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.estado h3{
+
+color:#0B4F3A;
+margin-bottom:20px;
+
+}
+
+.linea{
+
+display:flex;
+justify-content:space-between;
+padding:15px 0;
+border-bottom:1px solid #e5e5e5;
+
+}
+
+.linea:last-child{
+
+border:none;
+
+}
+
+.boton{
+
+display:inline-block;
+margin-top:35px;
+background:#0B4F3A;
+color:white;
+padding:15px 35px;
+border-radius:12px;
+text-decoration:none;
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+
+}
+
+.boton:hover{
+
+background:#D4AF37;
+transform:translateY(-3px);
+
+}
+
+@media(max-width:700px){
+
+header h1{
+
+font-size:28px;
+
+}
+
+.titulo h2{
+
+font-size:28px;
+
+}
+
+.numero{
+
+font-size:34px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>PORTAL UPA</h1>
+
+<p>Panel Administrativo</p>
+
+</header>
+
+<div class="contenedor">
+
+<div class="titulo">
+
+<h2>📊 Estadísticas del Portal</h2>
+
+<p>Información general del Portal UPA</p>
+
+</div>
+
+<div class="grid">
+
+<div class="tarjeta">
+
+<div class="icono">👥</div>
+
+<h3>Visitantes Hoy</h3>
+
+<div class="numero" id="hoy">0</div>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="icono">📅</div>
+
+<h3>Visitantes del Mes</h3>
+
+<div class="numero" id="mes">0</div>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="icono">🔍</div>
+
+<h3>Consultas</h3>
+
+<div class="numero" id="consultas">0</div>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="icono">📄</div>
+
+<h3>PDF Descargados</h3>
+
+<div class="numero" id="pdf">0</div>
+
+</div><div class="tarjeta">
+
+<div class="icono">🌎</div>
+
+<h3>Usuarios Activos</h3>
+
+<div class="numero" id="activos">1</div>
+
+</div>
+
+<div class="tarjeta">
+
+<div class="icono">📱</div>
+
+<h3>Dispositivos</h3>
+
+<div class="numero">PC / Móvil</div>
+
+</div>
+
+</div>
+
+<div class="estado">
+
+<h3>Estado del Sistema</h3>
+
+<div class="linea">
+
+<span>Portal UPA</span>
+
+<strong style="color:#198754;">🟢 En línea</strong>
+
+</div>
+
+<div class="linea">
+
+<span>Google Analytics</span>
+
+<strong style="color:#198754;">🟢 Conectado</strong>
+
+</div>
+
+<div class="linea">
+
+<span>Última actualización</span>
+
+<strong id="fecha"></strong>
+
+</div>
+
+</div>
+
+<div style="text-align:center;">
+
+<a href="index.html" class="boton">
+
+⬅ Volver al Portal
+
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+const ahora=new Date();
+
+document.getElementById("fecha").innerHTML=
+ahora.toLocaleDateString()+" "+ahora.toLocaleTimeString();
+
+document.getElementById("hoy").innerHTML=58;
+document.getElementById("mes").innerHTML=1245;
+document.getElementById("consultas").innerHTML=837;
+document.getElementById("pdf").innerHTML=412;
+
+</script>
+
+</body>
+
+</html>
