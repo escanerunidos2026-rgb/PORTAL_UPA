@@ -401,9 +401,9 @@ function descargarPDF() {
 
     };
 
-}const URL_ESTADISTICAS = "https://script.google.com/macros/s/AKfycbx_DKK2VWgyDqoN_a50nDU4_8PhWSTI-6A6-yyZ3-DoALTEAXiwli3hKMg-jHaXfzcaAg/exec";
+const URL_HOJA = "https://script.google.com/macros/s/AKfycby-_v7Fz0twg_lX6KsRzSSmNt_5W272mK5w9ZU8YtiLmH9AsICk9HRt7iUpKgbSfgikvw/exec";
 
 function registrarEstadistica(accion) {
-    fetch(URL_ESTADISTICAS + "?accion=" + encodeURIComponent(accion))
+    fetch(URL_HOJA + "?accion=" + encodeURIComponent(accion))
         .catch(() => {});
 }
