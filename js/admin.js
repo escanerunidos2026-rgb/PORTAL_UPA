@@ -1,4 +1,4 @@
-const URL_HOJA = "https://script.google.com/macros/s/AKfycbyvoGf2LBAtNsAzBjcBm5ziI1Hx7AjMMkLjOivyWVmCZg-ULW3OimZmZaqTyniWpjgunA/exec";
+const URL_HOJA = "https://script.google.com/macros/s/AKfycby-_v7Fz0twg_lX6KsRzSSmNt_5W272mK5w9ZU8YtiLmH9AsICk9HRt7iUpKgbSfgikvw/exec";
 
 async function cargarEstadisticas() {
     try {
