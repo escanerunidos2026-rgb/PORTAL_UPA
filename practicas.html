@@ -120,12 +120,8 @@
 </main>
 <script>
 const URL_HOJA = "https://script.google.com/macros/s/AKfycby-_v7Fz0twg_lX6KsRzSSmNt_5W272mK5w9ZU8YtiLmH9AsICk9HRt7iUpKgbSfgikvw/exec";
-function registrarDescarga(nombre){
-    fetch(URL_ESTADISTICAS + "?accion=" + encodeURIComponent(nombre))
+
+function registrarDescarga(nombre) {
+    fetch(URL_HOJA + "?accion=" + encodeURIComponent(nombre))
         .catch(() => {});
 }
-
-</script>
-</body>
-
-</html>
