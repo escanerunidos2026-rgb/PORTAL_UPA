@@ -174,9 +174,10 @@ document.getElementById("btnPDF").style.display = "inline-block";
 //==========================================
 // CONSULTAR
 //==========================================
-registrarEstadistica("Consulta de resultado");
+
 async function consultar(){
 
+    registrarEstadistica("Consulta Resultado");
     await cargarDatos();
 
     const texto = document.getElementById("nombre").value.trim();
@@ -300,9 +301,11 @@ document.addEventListener("DOMContentLoaded",async()=>{
 });//==========================================
 // DESCARGAR RESULTADO EN PDF
 //==========================================
-registrarEstadistica("Descarga PDF Resultado");
+
 function descargarPDF() {
 
+    registrarEstadistica("Descarga PDF Resultado");
+    
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
