@@ -251,11 +251,17 @@ document.addEventListener("DOMContentLoaded",async()=>{
 
     input.addEventListener("input",function(){
 
-        const texto=input.value.trim();
+        const texto = input.value;
 
-        lista.innerHTML="";
+lista.innerHTML = "";
 
-        if(texto==="") return;
+if (texto.trim() === "") return;
+
+// Solo mostrar sugerencias cuando exista un espacio
+// y se haya escrito al menos una letra después del espacio.
+const partes = texto.trim().split(/\s+/);
+
+if (partes.length < 2) return;
 
         // Mostrar un solo nombre por estudiante
         Object.keys(indiceEstudiantes).forEach(llave=>{
@@ -276,7 +282,6 @@ document.addEventListener("DOMContentLoaded",async()=>{
 
                     lista.innerHTML="";
 
-                    mostrarResultados(indiceEstudiantes[llave]);
 
                 };
 
