@@ -17,3 +17,7 @@ console.log(datos);
 }
 
 cargarEstadisticas();
+function cerrarSesion() {
+    localStorage.removeItem("sesionUPA");
+    window.location.href = "login.html";
+}
