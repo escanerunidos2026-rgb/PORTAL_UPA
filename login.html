@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión | Portal UPA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<main style="max-width:400px; margin:80px auto; text-align:center;">
+
+    <h2>🔒 Acceso Administrativo</h2>
+
+    <p>Ingrese sus credenciales para acceder al panel.</p>
+
+    <input type="text" id="usuario" placeholder="Usuario" style="width:100%; padding:10px; margin:10px 0;">
+
+    <input type="password" id="password" placeholder="Contraseña" style="width:100%; padding:10px; margin:10px 0;">
+
+    <button onclick="iniciarSesion()">Ingresar</button>
+
+    <p id="mensaje" style="color:red; margin-top:15px;"></p>
+
+</main>
+
+<script src="js/login.js"></script>
+
+</body>
+</html>

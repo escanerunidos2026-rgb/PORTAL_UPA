@@ -331,7 +331,11 @@ font-size:34px;
 
 </div>
 
-
+<script>
+if (localStorage.getItem("sesionUPA") !== "activa") {
+    window.location.href = "login.html";
+}
+</script>
 <script src="js/admin.js"></script>
 
 </body>
