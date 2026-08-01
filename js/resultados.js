@@ -26,12 +26,15 @@ async function cargarDatos() {
         if (columnas.length < 2) continue;
 
         let nombre = columnas[0].trim();
-        let nota = parseFloat(columnas[1]);
+let nota = parseFloat(columnas[1]);
+let examen = columnas[2].trim();
 
-        let estudiante = {
-            nombre: nombre,
-            nota: nota
-        };
+
+let estudiante = {
+    nombre: nombre,
+    nota: nota,
+    examen: examen
+};
 
         estudiantes.push(estudiante);
 
@@ -138,7 +141,7 @@ function mostrarResultados(listaResultados){
 
 <h4 style="margin-bottom:12px;color:#0B4F3A;">
 
-Resultado ${index+1}
+📚 ${estudiante.examen}
 
 </h4>
 
@@ -278,13 +281,13 @@ if (partes.length < 2) return;
 
                 item.onclick=function(){
 
-                    input.value=nombre;
+    input.value = nombre;
 
-                    lista.innerHTML="";
+    lista.innerHTML = "";
 
+    mostrarResultados(indiceEstudiantes[llave]);
 
-                };
-
+};
                 lista.appendChild(item);
 
             }
