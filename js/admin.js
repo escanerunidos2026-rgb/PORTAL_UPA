@@ -11,6 +11,9 @@ console.log(datos);
         document.getElementById("hoy").textContent = datos.visitantesHoy;
         document.getElementById("mes").textContent = datos.visitantesMes;
 
+        document.getElementById("pdfPracticas").textContent = datos.pdfPracticas;
+document.getElementById("pdfHoras").textContent = datos.pdfControl;
+document.getElementById("pdfResultados").textContent = datos.pdfResultado;
     } catch (error) {
         console.error("Error al cargar estadísticas:", error);
     }

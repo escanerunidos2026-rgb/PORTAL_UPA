@@ -259,21 +259,35 @@ font-size:34px;
 
 </div>
 
-<div class="tarjeta">
+<div class="tarjeta" id="tarjetaPDF">
 
-<div class="icono">📄</div>
+    <div class="icono">📄</div>
 
-<h3>PDF Descargados</h3>
+    <h3>PDF Descargados</h3>
 
-<div class="numero" id="pdf">0</div>
+    <div class="numero" id="pdf">0</div>
 
-</div><div class="tarjeta">
+    <p id="btnDetallePDF"
+       style="margin-top:10px;color:#0B4F3A;font-weight:bold;cursor:pointer;">
+        ▼ Ver detalle
+    </p>
 
-<div class="icono">🌎</div>
+    <div id="detallePDF"
+         style="display:none;margin-top:15px;padding-top:15px;border-top:1px solid #ddd;text-align:left;">
 
-<h3>Usuarios Activos</h3>
+        <p>📂 Documentación de Prácticas:
+            <strong id="pdfPracticas">0</strong>
+        </p>
 
-<div class="numero" id="activos">1</div>
+        <p>🕒 Control de Horas:
+            <strong id="pdfHoras">0</strong>
+        </p>
+
+        <p>📋 Resultado de Examen:
+            <strong id="pdfResultados">0</strong>
+        </p>
+
+    </div>
 
 </div>
 
@@ -341,7 +355,21 @@ if (localStorage.getItem("sesionUPA") !== "activa") {
 }
 </script>
 <script src="js/admin.js"></script>
+<script>
+document.getElementById("btnDetallePDF").onclick = function () {
 
+    const detalle = document.getElementById("detallePDF");
+
+    if (detalle.style.display === "none") {
+        detalle.style.display = "block";
+        this.innerHTML = "▲ Ocultar detalle";
+    } else {
+        detalle.style.display = "none";
+        this.innerHTML = "▼ Ver detalle";
+    }
+
+};
+</script>
 </body>
 
 </html>
