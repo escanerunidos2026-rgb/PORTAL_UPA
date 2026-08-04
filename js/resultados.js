@@ -285,7 +285,6 @@ if (partes.length < 2) return;
 
     lista.innerHTML = "";
 
-    mostrarResultados(indiceEstudiantes[llave]);
 
 };
                 lista.appendChild(item);
