@@ -14,41 +14,28 @@ async function cargarDatos() {
 
     if (estudiantes.length > 0) return;
 
-    const respuesta = await fetch("data/resultados.csv");
-    const texto = await respuesta.text();
+    const respuesta = await fetch(URL_HOJA + "?accion=resultados");
+    const datos = await respuesta.json();
 
-    const filas = texto.split("\n");
+    datos.forEach(item => {
 
-    for (let i = 1; i < filas.length; i++) {
-
-        let columnas = filas[i].split(",");
-
-        if (columnas.length < 2) continue;
-
-        let nombre = columnas[0].trim();
-let nota = parseFloat(columnas[1]);
-let examen = columnas[2].trim();
-
-
-let estudiante = {
-    nombre: nombre,
-    nota: nota,
-    examen: examen
-};
+        let estudiante = {
+            nombre: item.nombre,
+            nota: parseFloat(item.nota),
+            examen: item.examen
+        };
 
         estudiantes.push(estudiante);
 
-        let llave = normalizar(nombre);
+        let llave = normalizar(item.nombre);
 
         if (!indiceEstudiantes[llave]) {
-
             indiceEstudiantes[llave] = [];
-
         }
 
         indiceEstudiantes[llave].push(estudiante);
 
-    }
+    });
 
 }
 
