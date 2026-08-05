@@ -77,8 +77,10 @@ function coincide(busqueda, nombre) {
 
 function mostrarResultados(listaResultados){
 
+    console.log("mostrarResultados");
+    console.log(listaResultados.length);
+
     let html = `
-  
 <div class="tarjeta-resultado">
 
 <div class="encabezado-tarjeta">
